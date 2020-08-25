@@ -17,29 +17,29 @@ const rootElement = document.getElementById("root");
 const store = configureStore({});
 
 const onRedirectCallback = (appState) => {
-  window.history.replaceState(
-    {},
-    document.title,
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname
-  );
+    window.history.replaceState(
+        {},
+        document.title,
+        appState && appState.targetUrl
+            ? appState.targetUrl
+            : window.location.pathname
+    );
 };
 
 ReactDOM.render(
-  <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    redirect_uri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}
-  >
-    <Provider store={store}>
-      <BrowserRouter basename={baseUrl}>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </Auth0Provider>,
-  rootElement
+    <Auth0Provider
+        domain={config.domain}
+        client_id={config.clientId}
+        redirect_uri={window.location.origin}
+        onRedirectCallback={onRedirectCallback}
+    >
+        <Provider store={store}>
+            <BrowserRouter basename={baseUrl}>
+                <App />
+            </BrowserRouter>
+        </Provider>
+    </Auth0Provider>,
+    rootElement
 );
 
 registerServiceWorker();
